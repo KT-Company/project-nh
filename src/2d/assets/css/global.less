@@ -1,0 +1,70 @@
+@theme-color: "#264f80";
+@border-color: "grey";
+@background-color: "transparent";
+@gap: 8px;
+@fontsize: 14px;
+@fontsize-title: 18px;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  position: absolute;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+button:focus {
+  border: none;
+  outline: none;
+}
+
+ul,
+li,
+ol {
+  list-style: none;
+}
+
+.text-one-ellipsis {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+:root {
+  font-family: SourceHanSansSC;
+}
+
+@font-face {
+  font-family: HiraginoSansGBW3;
+  src: url('@/2d/assets/font/HiraginoSansGBW3.otf')
+}
+
+@font-face {
+  font-family: YouSheBiaoTiHei;
+  src: url("@/2d/assets/font/优设标题黑.TTF");
+}
+
+@font-face {
+  font-family: SourceHanSansSC;
+  src: url("@/2d/assets/font/SourceHanSansSC-Bold.otf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: SourceHanSansSC;
+  src: url("@/2d/assets/font/SourceHanSansSC-Light.otf");
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: SourceHanSansSC;
+  src: url("@/2d/assets/font/SourceHanSansSC-Regular.otf");
+  font-weight: normal;
+}
