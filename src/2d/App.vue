@@ -219,6 +219,12 @@ export default {
       cancelLocator()
     }
 
+    let dialogVisible = ref(false)
+
+    const handleAirPointOne = () => {
+      dialogVisible.value = true
+      airPointOne()
+    }
 
     return {
       tableData,
@@ -233,8 +239,10 @@ export default {
       tableRowClass,
       isShowSearchRes,
       rowClick,
+      handleAirPointOne,
       goodsInfo,
       backHandle,
+      dialogVisible,
       guaranteeOrflight,
       ...dialogHook(),
       airPointOne, airPointTwo
@@ -331,7 +339,7 @@ export default {
               <el-table-column prop="takeOff" :width="50" label="起飞">
                 <template v-slot:default="{ row }">
                   <span style="color: rgba(235, 205, 114, 1)">{{
-                      row.takeOff
+                    row.takeOff
                   }}</span>
                 </template>
               </el-table-column>
@@ -348,18 +356,18 @@ export default {
               </div>
               <p class="flight-statistics-item-name">
                 <span class="flight-statistics-item-name-text">{{
-                    item.name
+                  item.name
                 }}</span>
                 <span class="flight-statistics-item-name-unit">{{
-                    item.nameUnit
+                  item.nameUnit
                 }}</span>
               </p>
               <p class="flight-statistics-item-val">
                 <span class="flight-statistics-item-val-text">{{
-                    item.val
+                  item.val
                 }}</span>
                 <span class="flight-statistics-item-val-unit">{{
-                    item.valUnit
+                  item.valUnit
                 }}</span>
               </p>
             </li>
@@ -390,10 +398,10 @@ export default {
                 <div class="cur-day-weather-info-box">
                   <p class="cur-day-weather-info-desc">
                     <span class="cur-day-weather-info-desc-celsius">{{
-                        weatherData.temperature
+                      weatherData.temperature
                     }}</span>
                     <span class="cur-day-weather-info-desc-brief">{{
-                        weatherData.brief
+                      weatherData.brief
                     }}</span>
                     <span class="cur-day-weather-info-desc-en">（{{ weatherData.en }}）</span>
                   </p>
@@ -472,7 +480,7 @@ export default {
           <span class="inp-name">姓名:</span>
           <input type="text" id="name" v-model="_userInfo.name">
         </label>
-        <div >
+        <div>
           <span class="inp-name">性别:</span>
           <label for="male">
             <span>男</span>
@@ -500,9 +508,21 @@ export default {
       </form>
     </dialog>
     <div class="footnote-box">
-      <div class="footnote" @click="airPointOne">机位1</div>
+      <div class="footnote" @click="handleAirPointOne">机位1</div>
       <div class="footnote" @click="airPointTwo" style="display:none;">机位2</div>
     </div>
+
+    <!-- 机位1 弹窗 -->
+    <el-dialog v-model="dialogVisible" title="" width="20%" :show-close="false" :modal="false" align-center
+      class="jiwei1popup" style="z-index: 10; height: 20%; pointer-events: all;">
+      <p style="color: #FFF; font-size: 20px;text-align: center;letter-spacing: 8px;">无法执行保障，请检查</p>
+      <template #footer>
+        <span class="jiwei1popup-footer">
+          <div style="color: #9396a0; background-color: #1c1f36; border-radius: 10px;" @click="dialogVisible = false">取消</div>
+          <div style="color: #1c1f36; background-color: #9396a0; border-radius: 10px;" @click="dialogVisible = false">确定</div>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -1108,5 +1128,29 @@ input[type="text"] {
 
 .el-table {
   overflow: visible !important;
+}
+
+.jiwei1popup {
+  background: url('~@/assets/imgs/popup-red.png') center / 100% 100%;
+  color: #FFF;
+}
+
+.el-dialog__footer {
+  margin-top: 4%;
+}
+
+.jiwei1popup-footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.jiwei1popup-footer div {
+  cursor: pointer;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #9396a0 2px solid;
+  font-weight: bold;
 }
 </style>

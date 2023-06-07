@@ -2626,6 +2626,7 @@ function popupClick(callback:Function) {
 function changePeople(callback:Function) {
   wranBtnClick = callback
 }
+
 function airPointOne() {
   const points = {
     fjStart: [
